@@ -56,6 +56,24 @@ Examples:
 - `"AAABB"`, `"BA"` => 40
 - `"AA"`, `"AAE"` => 20
 
+## Final Score
+
+The final score is calculated by adding the length score and alphabet score.
+
+```text
+score = lengthScore + alphabetScore
+```
+
+Examples:
+
+- `"ABCDE"`, `"ABCDE"` => 100
+- `"ASD"`, `"DSA"` => 100
+- `"A"`, `"BB"` => 0
+- `"AAABB"`, `"BAA"` => 60
+  - lengthScore 20 + alphabetScore 40
+- `"AA"`, `"AAE"` => 50
+  - lengthScore 30 + alphabetScore 20
+
 ## Branch Plan
 
 1. Implement length similarity scoring on `feature/length`.
