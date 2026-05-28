@@ -41,4 +41,34 @@ class SimilarityCheckerTest {
     ) {
         assertThat(checker.lengthScore(left, right)).isCloseTo(expectedScore, within(TOLERANCE));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "ASD, DSA",
+            "AAABB, BA"
+    })
+    void returns_forty_points_when_alphabet_kinds_are_same(String left, String right) {
+        assertThat(checker.alphabetScore(left, right)).isCloseTo(40.0, within(TOLERANCE));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "A, BB"
+    })
+    void returns_zero_points_when_alphabet_kinds_are_all_different(String left, String right) {
+        assertThat(checker.alphabetScore(left, right)).isCloseTo(0.0, within(TOLERANCE));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "AA, AAE, 20.0",
+            "ABC, BCD, 20.0"
+    })
+    void returns_partial_points_for_partially_overlapping_alphabet_kinds(
+            String left,
+            String right,
+            double expectedScore
+    ) {
+        assertThat(checker.alphabetScore(left, right)).isCloseTo(expectedScore, within(TOLERANCE));
+    }
 }
