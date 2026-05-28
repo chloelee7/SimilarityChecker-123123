@@ -12,6 +12,28 @@ The score range is 0 to 100.
 - Alphabet score: max 40
 - Final score: length score + alphabet score
 
+## Length Score
+
+Length score checks the difference between the two string lengths.
+
+- If the lengths are the same, the score is 60.
+- If the longer length is at least twice the shorter length, the score is 0.
+- Otherwise, the partial score is calculated with:
+
+```text
+A = longer string length
+B = shorter string length
+Gap = A - B
+lengthScore = (1 - Gap / B) * 60
+```
+
+Examples:
+
+- `"ASD"`, `"DSA"` => 60
+- `"A"`, `"BB"` => 0
+- `"AAABB"`, `"BAA"` => 20
+- `"AA"`, `"AAE"` => 30
+
 ## Branch Plan
 
 1. Implement length similarity scoring on `feature/length`.
