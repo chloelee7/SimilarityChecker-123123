@@ -77,4 +77,20 @@ class SimilarityCheckerTest {
     ) {
         assertThat(checker.alphabetScore(left, right)).isCloseTo(expectedScore, within(TOLERANCE));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "ABCDE, ABCDE, 100.0",
+            "ASD, DSA, 100.0",
+            "A, BB, 0.0",
+            "AAABB, BAA, 60.0",
+            "AA, AAE, 50.0"
+    })
+    void returns_the_sum_of_length_score_and_alphabet_score(
+            String left,
+            String right,
+            double expectedScore
+    ) {
+        assertThat(checker.score(left, right)).isCloseTo(expectedScore, within(TOLERANCE));
+    }
 }

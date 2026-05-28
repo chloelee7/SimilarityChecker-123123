@@ -8,6 +8,10 @@ public class SimilarityChecker {
     private static final double ALPHABET_MAX_SCORE = 40.0;
     private static final double ZERO_SCORE = 0.0;
 
+    public double score(String left, String right) {
+        return lengthScore(left, right) + alphabetScore(left, right);
+    }
+
     public double lengthScore(String left, String right) {
         int leftLength = left.length();
         int rightLength = right.length();
