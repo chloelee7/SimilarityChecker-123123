@@ -3,13 +3,19 @@ package com.example.similaritychecker;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class SimilarityCheckerTest {
     private static final double TOLERANCE = 0.0001;
 
-    private final SimilarityChecker checker = new SimilarityChecker();
+    private SimilarityChecker checker = new SimilarityChecker();
+
+    @BeforeEach
+    void setUp() {
+        checker = new SimilarityChecker();
+    }
 
     @ParameterizedTest
     @CsvSource({
